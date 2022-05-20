@@ -9,12 +9,15 @@ const framerate = 60;
 // Here as a demo of what can be achieved in 
 // ~1 Hour of experimenting with functional programming
 // Notice how this is all just one big function, with many component functions
-// This can be expanded by adding functions inside of other functions, chaining together more functions, replace existing functions. And feels like a big modular interface with many knobs and sliders. 
+// This can be expanded by adding functions inside of other functions, chaining together more functions or replace existing functions. It feels like a big modular interface with many knobs and sliders. 
 
-// 1. The Arrange Function applies a transformation X times before executing the draw function
+// 1. The Arrange Function applies a transformation before executing the draw function X times 
 // 2. The Tracepoints applies a draw function on a set of of points
 // 3. The points list is modified by an extensible list of functions inside of pipe
 // 4. circle Spread creates points arranged in a circle formation
+
+// Notice the layering of functions and how on one glance you can modify almost every aspect of the sketch?
+// This is the power of FUN PROGRAMMING!
 
 const demo = t => arrange(x => {
   rotate(Math.PI / 8 * x * log(t))
@@ -31,7 +34,7 @@ const demo = t => arrange(x => {
   (circleSpread30(100))))
 
 
-// === THEN PLAY WITH THEM BY COMPOSITION
+// === The P5js Framework
 
 window.setup = () => {
   createCanvas(window.innerWidth, window.innerHeight)
@@ -41,7 +44,6 @@ window.setup = () => {
   // Compose Functions here for Static Composition
   demo(0.4)
 }
-
 
 window.draw = () => {
   const T = frameCount / framerate; // time 0.0 -> ...

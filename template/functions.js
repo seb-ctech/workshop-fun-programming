@@ -1,5 +1,7 @@
 import "../p5.js"
 
+// Think of this file as your toolbox
+
 //==== PURE FUNCTIONS ============
 // This are some tools that generate or modify data -- or other functions ;)
 
@@ -8,17 +10,15 @@ import "../p5.js"
 
 // Compose: Apply value to functions from the inside out like nesting function calls
 export const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
-
 // Pipe: Apply the result of one function to the input of the next, like a pipe
 export const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
-
 // Create a list out of the cumulative call of a next state function on a value
 export const unfold = (f, initState) =>
   f ( (value, nextState) => [ value, ...unfold (f, nextState) ]
     , () => []
     , initState
     )
-
+// Do If: Give a value to a predicate function, modify that value with one function or the other
 export const doIf = predicate => doit => elsedo => value => predicate(value) ? doit(value) : elsedo(value)
 export const doOnEven = doIf(x => x % 2 == 0)
 
@@ -76,6 +76,7 @@ export const EasingFunctions = {
 
 //==== IMPURE FUNCTIONS ============
 // These are your tools which have an effect. Think of them as your pen, eraser and scissors.
+// Can you come up with other composable and flexible drawing tools?
 
 export const tracepoints = drawF => points => points.forEach((point, i) => i < points.length - 1 ? drawF(point, points[i+1]) : (point, points[0]))
 
@@ -85,8 +86,6 @@ export const drawline = settings => a => b => {
   line(a.x, a.y, b.x, b.y)
   pop()
 }
-
-// Can you come up with other composable and flexible drawing tools?
 
 export const arrange = setting => n => draw => {
   numbers(0)(n).forEach(x => {
