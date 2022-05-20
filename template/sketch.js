@@ -3,6 +3,14 @@ import {/** Your functions here **/} from "./functions.js"
 
 let time = 0.0;
 
+
+// === CREATE YOUR ABSTRACT TOOLS FIRST
+
+
+
+
+// === THEN PLAY WITH THEM BY COMPOSITION
+
 window.setup = () => {
   createCanvas(window.innerWidth, window.innerHeight)
   // Your Setup code here 
@@ -21,6 +29,9 @@ window.draw = () => {
 window.windowResize = () => {
   resizeCanvas(window.innerWidth, window.innerHeight)
 }
+
+
+// ====== IMPURE EVIL FUNCTIONS
 
 function progressTime(){
   time += deltaTime
