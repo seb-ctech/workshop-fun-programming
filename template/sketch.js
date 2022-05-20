@@ -6,6 +6,16 @@ const framerate = 60;
 
 // === CREATE YOUR ABSTRACT TOOLS FIRST
 
+// Here as a demo of what can be achieved in 
+// ~1 Hour of experimenting with functional programming
+// Notice how this is all just one big function, with many component functions
+// This can be expanded by adding functions inside of other functions, chaining together more functions, replace existing functions. And feels like a big modular interface with many knobs and sliders. 
+
+// 1. The Arrange Function applies a transformation X times before executing the draw function
+// 2. The Tracepoints applies a draw function on a set of of points
+// 3. The points list is modified by an extensible list of functions inside of pipe
+// 4. circle Spread creates points arranged in a circle formation
+
 const demo = t => arrange(x => {
   rotate(Math.PI / 8 * x * log(t))
   translate(x * 50, 50)
@@ -34,7 +44,7 @@ window.setup = () => {
 
 
 window.draw = () => {
-  const T = frameCount / framerate; // time 0.0
+  const T = frameCount / framerate; // time 0.0 -> ...
   background(0,0,0)
   translate(width / 2, height / 2)
   // Compose Functions here for Animated Composition
