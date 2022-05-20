@@ -4,7 +4,7 @@ import "../p5.js"
 // This are some tools that generate or modify data -- or other functions ;)
 
 
-// Higher-Order Functions: TOOLS to create Tools
+// Higher-Order Functions: Your tools to create your tools
 
 // Compose: Apply value to functions from the inside out like nesting function calls
 export const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
@@ -34,12 +34,44 @@ const numbers = start => end =>
     , start // initial state
     )
 
+// A circle spread to get you started
+
 export const circleSpread = res => r => numbers(0)(res)
   .map((_, i) => Math.PI * 2 / res * i)
   .map(angle => createVector(Math.sin(angle) * r, Math.cos(angle) * r))
 
 export const circleSpread30 = circleSpread(30)
 export const circleSpread8 = circleSpread(8)
+
+// For your Animations [https://gist.github.com/gre/1650294]
+export const EasingFunctions = {
+  // no easing, no acceleration
+  linear: t => t,
+  // accelerating from zero velocity
+  easeInQuad: t => t*t,
+  // decelerating to zero velocity
+  easeOutQuad: t => t*(2-t),
+  // acceleration until halfway, then deceleration
+  easeInOutQuad: t => t<.5 ? 2*t*t : -1+(4-2*t)*t,
+  // accelerating from zero velocity 
+  easeInCubic: t => t*t*t,
+  // decelerating to zero velocity 
+  easeOutCubic: t => (--t)*t*t+1,
+  // acceleration until halfway, then deceleration 
+  easeInOutCubic: t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1,
+  // accelerating from zero velocity 
+  easeInQuart: t => t*t*t*t,
+  // decelerating to zero velocity 
+  easeOutQuart: t => 1-(--t)*t*t*t,
+  // acceleration until halfway, then deceleration
+  easeInOutQuart: t => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t,
+  // accelerating from zero velocity
+  easeInQuint: t => t*t*t*t*t,
+  // decelerating to zero velocity
+  easeOutQuint: t => 1+(--t)*t*t*t*t,
+  // acceleration until halfway, then deceleration 
+  easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
+}
 
 
 //==== IMPURE FUNCTIONS ============
