@@ -2,6 +2,8 @@ import "../p5.js"
 import {tracepoints, drawline, circleSpread30, circleSpread8, pipe, arrange, log, EasingFunctions
   /** Your functions here **/ } from "./functions.js"
 
+// TODO: Use Ramda ?
+
 const framerate = 60;
 
 // === CREATE YOUR ABSTRACT TOOLS FIRST
@@ -19,8 +21,8 @@ const framerate = 60;
 // Notice the layering of functions and how on one glance you can modify almost every aspect of the sketch?
 // This is the power of FUN PROGRAMMING!
 
-const demo = t => arrange(x => {
-  rotate(Math.PI / 8 * x * log(t))
+const demo = t => arrange(n => {
+  rotate(Math.PI / 8 * n * log(t))
   translate(x * 50, 50)
  })
  (10)
@@ -34,12 +36,12 @@ const demo = t => arrange(x => {
   (circleSpread30(100))))
 
 
-// === The P5js Framework
+// === The P5js Framework (This is not functional. P5js is not functional unfortunately)
 
 window.setup = () => {
   createCanvas(window.innerWidth, window.innerHeight)
   frameRate(framerate)
-  background(0,0,0)
+  background(0, 0, 0)
   translate(width / 2, height / 2)
   // Compose Functions here for Static Composition
   demo(0.4)
@@ -47,7 +49,7 @@ window.setup = () => {
 
 window.draw = () => {
   const T = frameCount / framerate; // time 0.0 -> ...
-  background(0,0,0)
+  background(0, 0, 0)
   translate(width / 2, height / 2)
   // Compose Functions here for Animated Composition
   demo(EasingFunctions.easeInCubic((sin(T * 0.6) + 1) / 2))
