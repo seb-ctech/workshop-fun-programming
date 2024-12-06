@@ -23,7 +23,7 @@ const framerate = 60;
 
 const demo = t => arrange(n => {
   rotate(Math.PI / 8 * n * log(t))
-  translate(x * 50, 50)
+  translate(50, 50)
  })
  (10)
  (() => tracepoints((a, b) => drawline(() => {
